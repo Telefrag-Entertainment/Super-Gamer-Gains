@@ -26,6 +26,12 @@ body{
 		font-size:26pt;
 		color:#ffaa00;
 	}
+	div.onlyLarge{
+		display: inline;
+	}
+	div.onlySmall{
+		display: none;
+	}
 	
 @media screen and (max-width: 900px) {
 	 body{
@@ -118,6 +124,12 @@ body{
 		font-size:15pt;
 		color:#ffaa00;
 	}
+	div.onlyLarge{
+		display: none;
+	}
+	div.onlySmall{
+		display: inline;
+	}
 }
 
 
@@ -129,7 +141,7 @@ body{
 .custom-select {
   position: relative;
   font-family: impostor;
-  font-size: 18px;
+  font-size: 3vw;
 }
 
 .custom-select select {
@@ -137,7 +149,7 @@ body{
 }
 
 .select-selected {
-  background-color: black;
+  background-color: rgb(25, 25, 25);
 }
 
 /* Style the arrow inside the select element: */
@@ -145,17 +157,17 @@ body{
   position: absolute;
   content: "";
   top: 14px;
-  right: 10px;
+  right: 0px;
   width: 0;
   height: 0;
-  border: 2px solid transparent;
+  border: 10px solid white;
   border-color: #fff transparent transparent transparent;
 }
 
 /* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
   border-color: transparent transparent #fff transparent;
-  top: 7px;
+  top: 14px;
 }
 
 /* style the items (options), including the selected item: */
@@ -184,5 +196,6 @@ body{
 }
 
 .select-items div:hover, .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
+  color:#ffaa00;
 }
