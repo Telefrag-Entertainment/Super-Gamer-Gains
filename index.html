@@ -3,15 +3,40 @@
 <html lang="en"><head><meta charset = "utf-8" /><link rel="stylesheet" type="text/css" href="style.css"/>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Nunito:300|PT+Sans|Poppins|Quicksand:700|Rammetto+One" rel="stylesheet">
 <title>Super Gamer Gains</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".toggleDesc").click(function(){
+        $("#description").toggle();
+    });
+	$("#description").hide();
+});
+
+</script>
 </head>
 
 <body>
 
-<center><img src="img/sgg_logo.png" alt="Super Gamer Gains Logo"><br><br>Warzone Workout
-<br><br><br>
+<center><img src="img/sgg_logo.png" alt="Super Gamer Gains Logo">
+<div style="position: absolute;left:80%;top:5%;"><button type="button" class="toggleDesc" style="width:50px;height:50px;background-color:rgb(25,25,25);color:white;">?</button></div>
+<br><br>Warzone Workout 
+<br><br><br>	
+	<div id="description" class="description">
+	<h2>What is Super Gamer Gains?</h2>
+	Super Gamer Gains is a group of gamers and game developers dedicated to increasing the health and wellness of gamers through promoting healthly lifestyle choices, assisting 
+	with exercise, and bringing awareness to mental health issues.
+	<h2>How does this workout work?</h2>
+	Play a round of COD Warzone. Choose your Rank and then enter your stats after the round ends, wether you win or lose. Based on your Rank, a quick workout routine will
+	be generated based on your performance. Complete the workout and then start up your next round!
+	<h2>What Rank should I choose?</h2>
+	You decide your own Rank, and when to rank up. Start with the first Rank and when you find the routine's are too easy you've ranked up! Time to choose the next Rank and 
+	push yourself harder.
+	</div>
+<br>
+
 
 :RANK:<br><br>
-<div class="custom-select" style="width:46%;">
+<div class="custom-select" style="width:40%;">
   <select>
     <option value="0">Select Your Rank</option>
     <option value="1">N00B</option>
