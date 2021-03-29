@@ -56,11 +56,10 @@ $(document).ready(function(){
 <br><br>
 
 <div>
-<form id="form">
 	<center>
 	  <label for="kills">Kills: </label> <input type="number" placeholder="0" id="kills"> <br><br>
-	  <label for="deaths">Deaths: </label> <input type="number" placeholder="0"> <br><br>
-	  <label for="damage">Damage: </label> <input type="number" placeholder="0"> <br><br>
+	  <label for="deaths">Deaths: </label> <input type="number" placeholder="0" id="deaths"> <br><br>
+	  <label for="damage">Damage: </label> <input type="number" placeholder="0" id="damage"> <br><br>
 	
 	Placement: <br>
 	
@@ -77,28 +76,31 @@ $(document).ready(function(){
 	  <label for="topnone"> None </label>
 	</div>
 	
-	<div class="onlySmall">
-  	  <input type="radio" id="win" name="place" value="winner" style="width:25px;">
-	  <label for="win">Winner</label><br>
-	  <input type="radio" id="top3" name="place" value="top3"style="width:25px">
-	  <label for="top3">Top 3</label><br>
-	  <input type="radio" id="top5" name="place" value="top5"style="width:25px">
-	  <label for="top5">Top 5</label><br>
-	  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
-	  <label for="top10">Top 10</label><br>
-	  <input type="radio" id="topnone" name="place" value="topnone"style="width:25px">
-	  <label for="topnone">None</label>
+		<div class="onlySmall">
+		  <input type="radio" id="win" name="place" value="winner" style="width:25px;">
+		  <label for="win">Winner</label><br>
+		  <input type="radio" id="top3" name="place" value="top3"style="width:25px">
+		  <label for="top3">Top 3</label><br>
+		  <input type="radio" id="top5" name="place" value="top5"style="width:25px">
+		  <label for="top5">Top 5</label><br>
+		  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
+		  <label for="top10">Top 10</label><br>
+		  <input type="radio" id="topnone" name="place" value="topnone"style="width:25px">
+		  <label for="topnone">None</label>
+		</div>
 	</div>
-	
-</div>
-
-<button type="button" onclick="showResults()">Send your message</button>
-</form>
+	<button type="button" onclick="showResults()">Round Over</button>
 </center>
 </div>
 
+
 <div class="resultPage" id="resultPage">
-RESULTS
+	<center>
+		: Your Warzone Workout : <br>
+		<div id="workout">
+		</div>
+		<button type="button" onclick="back()">Back</button>
+	</center>
 </div>
 
 <script>
@@ -106,6 +108,16 @@ RESULTS
     //console.log(document.getElementById('kills').value);
 	document.getElementById('formPage').style.display = 'none';
 	document.getElementById('resultPage').style.display = 'inline';
+	document.getElementById('workout').innerHTML = 
+	"Pushups: " + Math.max(Math.round(document.getElementById('kills').value / 3), 5) + "<br>" + 
+	"Situps: " + Math.max(Math.round(document.getElementById('damage').value / 10), 10) + "<br>" +
+	"Wall Sit: " + Math.max(Math.round(document.getElementById('deaths').value) * 5, 10) + " seconds<br>" + 
+	"<br><br>Get it done and get back out there!";
+  };
+  
+  function back(){
+	document.getElementById('formPage').style.display = 'inline';
+	document.getElementById('resultPage').style.display = 'none';
   };
 </script>
 

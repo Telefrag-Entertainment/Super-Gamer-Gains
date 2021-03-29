@@ -47,6 +47,9 @@ body{
 	
 	div.resultPage{
 		display: none;
+		line-height: 2.0;
+		font-size: 2.95vw;
+		width: 85%;
 	}
 	
 @media screen and (max-width: 900px) {
