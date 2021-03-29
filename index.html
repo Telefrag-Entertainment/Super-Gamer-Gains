@@ -20,7 +20,8 @@ $(document).ready(function(){
 <center><img src="img/sgg_logo.png" alt="Super Gamer Gains Logo">
 <div style="position: absolute;left:80%;top:5%;"><button type="button" class="toggleDesc" style="width:50px;height:50px;background-color:rgb(25,25,25);color:white;">?</button></div>
 <br><br>Warzone Workout 
-<br><br><br>	
+<br><br><br>
+
 	<div id="description" class="description">
 	<h2>What is Super Gamer Gains?</h2>
 	Super Gamer Gains is a group of gamers and game developers dedicated to increasing the health and wellness of gamers through promoting healthly lifestyle choices, assisting 
@@ -39,6 +40,7 @@ $(document).ready(function(){
 	</div>
 <br>
 
+<div class="formPage" id="formPage">
 
 :RANK:<br><br>
 <div class="custom-select" style="width:40%;">
@@ -54,9 +56,9 @@ $(document).ready(function(){
 <br><br>
 
 <div>
-	
+<form id="form">
 	<center>
-	  <label for="kills">Kills: </label> <input type="number" placeholder="0"> <br><br>
+	  <label for="kills">Kills: </label> <input type="number" placeholder="0" id="kills"> <br><br>
 	  <label for="deaths">Deaths: </label> <input type="number" placeholder="0"> <br><br>
 	  <label for="damage">Damage: </label> <input type="number" placeholder="0"> <br><br>
 	
@@ -90,7 +92,22 @@ $(document).ready(function(){
 	
 </div>
 
+<button type="button" onclick="showResults()">Send your message</button>
+</form>
 </center>
+</div>
+
+<div class="resultPage" id="resultPage">
+RESULTS
+</div>
+
+<script>
+  function showResults() {
+    //console.log(document.getElementById('kills').value);
+	document.getElementById('formPage').style.display = 'none';
+	document.getElementById('resultPage').style.display = 'inline';
+  };
+</script>
 
 <script>
 /* Code: https://www.w3schools.com/howto/howto_custom_select.asp */

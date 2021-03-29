@@ -41,6 +41,14 @@ body{
 		border: 1px solid white;
 	}
 	
+	div.formPage{
+		display: inline;
+	}
+	
+	div.resultPage{
+		display: none;
+	}
+	
 @media screen and (max-width: 900px) {
 	 body{
 		background-color: black;
