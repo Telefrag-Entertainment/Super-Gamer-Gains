@@ -58,7 +58,6 @@ $(document).ready(function(){
 <div>
 	<center>
 	  <label for="kills">Kills: </label> <input type="number" placeholder="0" id="kills"> <br><br>
-	  <label for="deaths">Deaths: </label> <input type="number" placeholder="0" id="deaths"> <br><br>
 	  <label for="damage">Damage: </label> <input type="number" placeholder="0" id="damage"> <br><br>
 	
 	Placement: <br>
@@ -72,10 +71,10 @@ $(document).ready(function(){
 	  <label for="top5"> Top 5 </label><br>
 	  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
 	  <label for="top10"> Top 10 </label>
-	  <input type="radio" id="topnone" name="place" value="topnone"style="width:25px">
+	  <input type="radio" checked id="topnone" name="place" value="topnone"style="width:25px">
 	  <label for="topnone"> None </label>
 	</div>
-	
+	<form>
 		<div class="onlySmall">
 		  <input type="radio" id="win" name="place" value="winner" style="width:25px;">
 		  <label for="win">Winner</label><br>
@@ -85,9 +84,10 @@ $(document).ready(function(){
 		  <label for="top5">Top 5</label><br>
 		  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
 		  <label for="top10">Top 10</label><br>
-		  <input type="radio" id="topnone" name="place" value="topnone"style="width:25px">
+		  <input type="radio" checked id="topnone" name="place" value="topnone"style="width:25px">
 		  <label for="topnone">None</label>
 		</div>
+	</form>
 	</div>
 	<button type="button" onclick="showResults()">Round Over</button>
 </center>
@@ -96,29 +96,74 @@ $(document).ready(function(){
 
 <div class="resultPage" id="resultPage">
 	<center>
-		: Your Warzone Workout : <br>
-		<div id="workout">
-		</div>
+		<div id="yourWorkout"></div> Warzone Workout<br><br>
+
+			<div class="textPop1" id="tp1">Pushups: 0</div><br>
+			<div class="textPop2" id="tp2">Situps: 0</div><br>
+			
 		<button type="button" onclick="back()">Back</button>
 	</center>
 </div>
 
 <script>
-  function showResults() {
-    //console.log(document.getElementById('kills').value);
-	document.getElementById('formPage').style.display = 'none';
-	document.getElementById('resultPage').style.display = 'inline';
-	document.getElementById('workout').innerHTML = 
-	"Pushups: " + Math.max(Math.round(document.getElementById('kills').value / 3), 5) + "<br>" + 
-	"Situps: " + Math.max(Math.round(document.getElementById('damage').value / 10), 10) + "<br>" +
-	"Wall Sit: " + Math.max(Math.round(document.getElementById('deaths').value) * 5, 10) + " seconds<br>" + 
-	"<br><br>Get it done and get back out there!";
-  };
+
+var repWorkouts = ["Pushups", "Situps", "Jumping Jacks", "Burpees", "Mountain Climbers", "Tricep Dips", "Split Squat"];
+var repWorkoutMultiplier = [0.75, 1, 1.5, 0.75, 1.25, 1, 0.5];
+var timeWorkouts = ["Planks", "Wall Sit"];
+var timeWorkouttMultiplier = [1, 1];
+var selectWorkouts = [];
+var rankMultiplier = [1, 1.25, 2, 3];
+var selectedRankMulti = 0;
+
+function showResults() {
+selectWorkouts[0] = getRandomInt(repWorkouts.length);
+selectWorkouts[1] = getRandomInt(timeWorkouts.length);
+
+document.getElementById('yourWorkout').innerHTML = selectedRankMulti == 0 ? "N00b" : selectedRankMulti == 1 ? "Experienced" : selectedRankMulti == 2 ? "Veteran" : "Elite";
+document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": 0 reps";
+document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": 0 seconds";
+document.getElementById('formPage').style.display = 'none';
+document.getElementById('resultPage').style.display = 'inline';
+workout1();
+}
   
-  function back(){
-	document.getElementById('formPage').style.display = 'inline';
-	document.getElementById('resultPage').style.display = 'none';
-  };
+function back(){
+document.getElementById('formPage').style.display = 'inline';
+document.getElementById('resultPage').style.display = 'none';
+document.getElementById('tp1').style.animationPlayState  = 'paused';
+document.getElementById('tp2').style.animationPlayState  = 'paused';
+}
+
+function workout1(){
+	target = Math.max(Math.round((document.getElementById('kills').value * 1.25 * repWorkoutMultiplier[selectWorkouts[0]]) * rankMultiplier[selectedRankMulti]), Math.round(5 * repWorkoutMultiplier[selectWorkouts[0]]));
+	console.log(target);
+	for (let i = 0; i <= target; i++) {
+	  setTimeout(function timer() {
+		document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": " + i + " reps";
+		if(i == target){
+			document.getElementById('tp1').style.animationPlayState  = 'running';
+			workout2();
+			return;
+		}
+		}, Math.max(i * 1000/target, 1));	  
+	}
+}
+
+function workout2(){
+	target = Math.max(Math.round((document.getElementById('damage').value / 150 * repWorkoutMultiplier[selectWorkouts[0]]) * rankMultiplier[selectedRankMulti]), Math.round(10 * repWorkoutMultiplier[selectWorkouts[0]]));
+	for (let i = 0; i <= target; i++) {
+	  setTimeout(function timer() {
+		document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": " + i + " seconds";
+		if(i == target){
+			document.getElementById('tp2').style.animationPlayState  = 'running';
+		}
+	  }, Math.max(i * 1000/target, 1));	  
+	}
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 </script>
 
 <script>
@@ -151,6 +196,7 @@ for (i = 0; i < l; i++) {
         for (i = 0; i < sl; i++) {
           if (s.options[i].innerHTML == this.innerHTML) {
             s.selectedIndex = i;
+			selectedRankMulti = i-1;
             h.innerHTML = this.innerHTML;
             y = this.parentNode.getElementsByClassName("same-as-selected");
             yl = y.length;

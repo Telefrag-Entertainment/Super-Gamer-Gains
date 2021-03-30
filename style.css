@@ -47,9 +47,9 @@ body{
 	
 	div.resultPage{
 		display: none;
-		line-height: 2.0;
-		font-size: 2.95vw;
-		width: 85%;
+		line-height: 1.2;
+		font-size: 3.95vw;
+		width: 99%;
 	}
 	
 @media screen and (max-width: 900px) {
@@ -217,4 +217,18 @@ body{
 .select-items div:hover, .same-as-selected {
   background-color: rgba(0, 0, 0, 0.8);
   color:#ffaa00;
+}
+
+div.textPop1, div.textPop2, div.textPop3{
+	font-size:2.5vw;
+	animation-play-state: paused;
+	animation-name: textPop;
+	animation-duration: 0.15s;
+	animation-iteration-count: 2;
+	animation-direction: alternate;
+}
+
+@keyframes textPop{
+	to {font-size: 3vw; color: #ffaa00;}
+	from {font-size: 2.5vw;color: white;}
 }
