@@ -71,35 +71,35 @@ $(document).ready(function(){
 	  <label for="top5"> Top 5 </label><br>
 	  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
 	  <label for="top10"> Top 10 </label>
-	  <input type="radio" checked id="topnone" name="place" value="topnone"style="width:25px">
-	  <label for="topnone"> None </label>
+	  <input type="radio" checked id="none" name="place" value="none"style="width:25px">
+	  <label for="none"> None </label>
 	</div>
-	<form>
-		<div class="onlySmall">
-		  <input type="radio" id="win" name="place" value="winner" style="width:25px;">
-		  <label for="win">Winner</label><br>
-		  <input type="radio" id="top3" name="place" value="top3"style="width:25px">
-		  <label for="top3">Top 3</label><br>
-		  <input type="radio" id="top5" name="place" value="top5"style="width:25px">
-		  <label for="top5">Top 5</label><br>
-		  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
-		  <label for="top10">Top 10</label><br>
-		  <input type="radio" checked id="topnone" name="place" value="topnone"style="width:25px">
-		  <label for="topnone">None</label>
-		</div>
-	</form>
+
+	<div class="onlySmall">
+	  <input type="radio" id="win" name="place" value="winner" style="width:25px;">
+	  <label for="win">Winner</label><br>
+	  <input type="radio" id="top3" name="place" value="top3"style="width:25px">
+	  <label for="top3">Top 3</label><br>
+	  <input type="radio" id="top5" name="place" value="top5"style="width:25px">
+	  <label for="top5">Top 5</label><br>
+	  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
+	  <label for="top10">Top 10</label><br>
+	  <input type="radio" checked id="none" name="place" value="none" style="width:25px">
+	  <label for="none">None</label>
+	</div>
+
 	</div>
 	<button type="button" onclick="showResults()">Round Over</button>
 </center>
 </div>
 
-
 <div class="resultPage" id="resultPage">
 	<center>
 		<div id="yourWorkout"></div> Warzone Workout<br><br>
 
-			<div class="textPop1" id="tp1">Pushups: 0</div><br>
-			<div class="textPop2" id="tp2">Situps: 0</div><br>
+			<div class="textPop1" id="tp1"></div><br>
+			<div class="textPop2" id="tp2"></div><br>
+			<div class="textPop3" id="tp3"></div>
 			
 		<button type="button" onclick="back()">Back</button>
 	</center>
@@ -114,24 +114,32 @@ var timeWorkouttMultiplier = [1.25, 1];
 var selectWorkouts = [];
 var rankMultiplier = [1, 1.25, 1.75, 2.5];
 var selectedRankMulti = 0;
+var bonusWinOptions = ["CONGRATULATIONS!<br>Cut your reps/time in half, you earned a break!", "GOOD JOB!<br>Feel free to skip this one, you earned a break!", 
+"NICE WIN!<br>Use that adrenilne to knock out your workout!", "YOU WON!<br>Feel free to substitute one of your exercises with an exercise you prefer."];
+var bonusTop3Options = [""];
+
 
 function showResults() {
-selectWorkouts[0] = getRandomInt(repWorkouts.length);
-selectWorkouts[1] = getRandomInt(timeWorkouts.length);
+	selectWorkouts[0] = getRandomInt(repWorkouts.length);
+	selectWorkouts[1] = getRandomInt(timeWorkouts.length);
 
-document.getElementById('yourWorkout').innerHTML = selectedRankMulti == 0 ? "N00b" : selectedRankMulti == 1 ? "Experienced" : selectedRankMulti == 2 ? "Veteran" : "Elite";
-document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": 0 reps";
-document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": 0 seconds";
-document.getElementById('formPage').style.display = 'none';
-document.getElementById('resultPage').style.display = 'inline';
-workout1();
+	document.getElementById('yourWorkout').innerHTML = selectedRankMulti == 0 ? "N00b" : selectedRankMulti == 1 ? "Experienced" : selectedRankMulti == 2 ? "Veteran" : "Elite";
+	document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": 0 reps";
+	document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": 0 seconds";
+	
+	document.getElementById('tp3').innerHTML = "Placement Bonus ( " + document.querySelector('input[name="place"]:checked').value +"): ";
+	
+	document.getElementById('formPage').style.display = 'none';
+	document.getElementById('resultPage').style.display = 'inline';
+	workout1();
 }
   
 function back(){
-document.getElementById('formPage').style.display = 'inline';
-document.getElementById('resultPage').style.display = 'none';
-document.getElementById('tp1').style.animationPlayState  = 'paused';
-document.getElementById('tp2').style.animationPlayState  = 'paused';
+	document.getElementById('formPage').style.display = 'inline';
+	document.getElementById('resultPage').style.display = 'none';
+	document.getElementById('tp1').style.animationPlayState  = 'paused';
+	document.getElementById('tp2').style.animationPlayState  = 'paused';
+	document.getElementById('tp3').style.animationPlayState  = 'paused';
 }
 
 function workout1(){
