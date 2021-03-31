@@ -95,7 +95,7 @@ $(document).ready(function(){
 
 <div class="resultPage" id="resultPage">
 	<center>
-		<div id="yourWorkout"></div> Warzone Workout<br><br>
+		<div id="yourWorkout" style="font-size:21pt;"> Warzone Workout</div><br><br>
 
 			<div class="textPop1" id="tp1"></div><br>
 			<div class="textPop2" id="tp2"></div><br>
@@ -123,7 +123,7 @@ function showResults() {
 	selectWorkouts[0] = getRandomInt(repWorkouts.length);
 	selectWorkouts[1] = getRandomInt(timeWorkouts.length);
 
-	document.getElementById('yourWorkout').innerHTML = selectedRankMulti == 0 ? "N00b" : selectedRankMulti == 1 ? "Experienced" : selectedRankMulti == 2 ? "Veteran" : "Elite";
+	document.getElementById('yourWorkout').innerHTML = (selectedRankMulti == 0 ? "N00b" : selectedRankMulti == 1 ? "Experienced" : selectedRankMulti == 2 ? "Veteran" : "Elite") + " Warzone Workout";
 	document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": 0 reps";
 	document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": 0 seconds";
 	

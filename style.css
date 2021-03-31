@@ -130,8 +130,8 @@ div.formPage{
 div.resultPage{
 	display: none;
 	line-height: 1.2;
-	font-size: 3.95vw;
-	width: 99%;
+	font-size: 32pt;
+	width: 85%;
 }
 
 
@@ -203,15 +203,17 @@ div.resultPage{
 }
 
 div.textPop1, div.textPop2, div.textPop3{
-	font-size:2.5vw;
+	font-size:28pt;
 	animation-play-state: paused;
 	animation-name: textPop;
-	animation-duration: 0.15s;
-	animation-iteration-count: 2;
-	animation-direction: alternate;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-fill-mode: forwards;
 }
 
 @keyframes textPop{
-	to {font-size: 3vw; color: #ffaa00;}
-	from {font-size: 2.5vw;color: white;}
+	0% {font-size: 28pt;color: white;}
+	35% {font-size: 30pt; color: #ffaa00;}
+	100% {font-size: 28pt; color: yellow;}	
 }
