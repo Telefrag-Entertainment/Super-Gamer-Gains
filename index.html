@@ -95,9 +95,9 @@ $(document).ready(function(){
 
 <div class="resultPage" id="resultPage">
 	<center>
-		<div id="yourWorkout" style="font-size:21pt;"> Warzone Workout</div><br><br>
+		<div id="yourWorkout" style="font-size:21pt;"> Warzone Workout</div><br>
 
-			<div class="textPop1" id="tp1"></div><br>
+			<div id="repImg"></div><br><div class="textPop1" id="tp1"></div><br>
 			<div class="textPop2" id="tp2"></div><br>
 			<div class="textPop3" id="tp3"></div>
 			
@@ -109,6 +109,7 @@ $(document).ready(function(){
 
 var repWorkouts = ["Pushups", "Situps", "Jumping Jacks", "Burpees", "Mountain Climbers", "Tricep Dips", "Split Squat"];
 var repWorkoutMultiplier = [0.75, 1, 1.5, 0.75, 1.15, 0.8, 0.5];
+var repImgs = ["pushup_tired.gif"];
 var timeWorkouts = ["Planks", "Wall Sit"];
 var timeWorkouttMultiplier = [1.25, 1];
 var selectWorkouts = [];
@@ -128,6 +129,8 @@ function showResults() {
 	document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": 0 seconds";
 	
 	document.getElementById('tp3').innerHTML = "Placement Bonus ( " + document.querySelector('input[name="place"]:checked').value +"): ";
+	
+	document.getElementById('repImg').innerHTML = "<img src='img/" + repImgs[0] + "' style='width:15%'>";
 	
 	document.getElementById('formPage').style.display = 'none';
 	document.getElementById('resultPage').style.display = 'inline';
