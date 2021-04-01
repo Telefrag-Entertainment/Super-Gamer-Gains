@@ -19,8 +19,8 @@ $(document).ready(function(){
 
 <center><img src="img/sgg_logo.png" alt="Super Gamer Gains Logo">
 <div style="position: absolute;left:80%;top:5%;"><button type="button" class="toggleDesc" style="width:50px;height:50px;background-color:rgb(25,25,25);color:white;">?</button></div>
-<br><br>Warzone Workout 
-<br><br><br>
+<br><br>Warzone Workout</div>
+<br>
 
 	<div id="description" class="description">
 	<h2>What is Super Gamer Gains?</h2>
@@ -42,8 +42,8 @@ $(document).ready(function(){
 
 <div class="formPage" id="formPage">
 
-:RANK:<br><br>
-<div class="custom-select" style="width:60%; height: 10px; padding:5px;">
+:RANK:<br>
+<div class="custom-select" style="width:60%; height: 20px; padding:25px;">
   <select>
     <option value="0">Select Your Rank</option>
     <option value="1">N00B</option>
@@ -65,8 +65,6 @@ $(document).ready(function(){
 	<div class="onlyLarge">
   	  <input type="radio" id="win" name="place" value="winner" style="width:25px;">
 	  <label for="win"> Winner </label>
-	  <input type="radio" id="top3" name="place" value="top3"style="width:25px">
-	  <label for="top3"> Top 3 </label>
 	  <input type="radio" id="top5" name="place" value="top5"style="width:25px">
 	  <label for="top5"> Top 5 </label><br>
 	  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
@@ -78,8 +76,6 @@ $(document).ready(function(){
 	<div class="onlySmall">
 	  <input type="radio" id="win" name="place" value="winner" style="width:25px;">
 	  <label for="win">Winner</label><br>
-	  <input type="radio" id="top3" name="place" value="top3"style="width:25px">
-	  <label for="top3">Top 3</label><br>
 	  <input type="radio" id="top5" name="place" value="top5"style="width:25px">
 	  <label for="top5">Top 5</label><br>
 	  <input type="radio" id="top10" name="place" value="top10"style="width:25px">
@@ -88,17 +84,17 @@ $(document).ready(function(){
 	  <label for="none">None</label>
 	</div>
 
-	</div>
-	<button type="button" onclick="showResults()">Round Over</button>
+	</div><br>
+	<button type="button" onclick="showResults()" style="color:black;width:100px;height:50px;background-color:white;font-family:impostor;">Round Over</button>
 </center>
 </div>
 
 <div class="resultPage" id="resultPage">
 	<center>
-		<div id="yourWorkout" style="font-size:21pt;"> Warzone Workout</div><br>
+		<div id="yourWorkout" style="font-size:21pt;"> Workout</div><br>
 
 			<div id="repImg"></div><br><div class="textPop1" id="tp1"></div><br>
-			<div class="textPop2" id="tp2"></div><br>
+			<div id="timeImg"></div><br><div class="textPop2" id="tp2"></div><br>
 			<div class="textPop3" id="tp3"></div>
 			
 		<button type="button" onclick="back()">Back</button>
@@ -111,7 +107,8 @@ var repWorkouts = ["Pushups", "Situps", "Jumping Jacks", "Burpees", "Mountain Cl
 var repWorkoutMultiplier = [0.75, 1, 1.5, 0.75, 1.15, 0.8, 0.5];
 var repImgs = ["pushup_tired.gif"];
 var timeWorkouts = ["Planks", "Wall Sit"];
-var timeWorkouttMultiplier = [1.25, 1];
+var timeWorkoutMultiplier = [1.25, 1];
+var timeImgs = ["plank_tired.gif"];
 var selectWorkouts = [];
 var rankMultiplier = [1, 1.25, 1.75, 2.5];
 var selectedRankMulti = 0;
@@ -119,21 +116,47 @@ var bonusWinOptions = ["CONGRATULATIONS!<br>Cut your reps/time in half, you earn
 "NICE WIN!<br>Use that adrenilne to knock out your workout!", "YOU WON!<br>Feel free to substitute one of your exercises with an exercise you prefer."];
 var bonusTop3Options = [""];
 
+var repsTarget;
+var timeTarget;
 
 function showResults() {
 	selectWorkouts[0] = getRandomInt(repWorkouts.length);
 	selectWorkouts[1] = getRandomInt(timeWorkouts.length);
 
-	document.getElementById('yourWorkout').innerHTML = (selectedRankMulti == 0 ? "N00b" : selectedRankMulti == 1 ? "Experienced" : selectedRankMulti == 2 ? "Veteran" : "Elite") + " Warzone Workout";
+	document.getElementById('yourWorkout').innerHTML = (selectedRankMulti == 0 ? "N00b" : selectedRankMulti == 1 ? "Experienced" : selectedRankMulti == 2 ? "Veteran" : "Elite") + " Workout";
 	document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": 0 reps";
 	document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": 0 seconds";
-	
-	document.getElementById('tp3').innerHTML = "Placement Bonus ( " + document.querySelector('input[name="place"]:checked').value +"): ";
-	
-	document.getElementById('repImg').innerHTML = "<img src='img/" + repImgs[0] + "' style='width:15%'>";
+
+	document.getElementById('repImg').innerHTML = "<img src='img/" + repImgs[0] + "' style='width:200px;'>";
+	document.getElementById('timeImg').innerHTML = "<img src='img/" + timeImgs[0] + "' style='width:200px;'>";
 	
 	document.getElementById('formPage').style.display = 'none';
 	document.getElementById('resultPage').style.display = 'inline';
+	
+	repsTarget = Math.max(Math.round((document.getElementById('kills').value * 1.25 * repWorkoutMultiplier[selectWorkouts[0]]) * rankMultiplier[selectedRankMulti]), Math.round(5 * repWorkoutMultiplier[selectWorkouts[0]]));
+	timeTarget = Math.max(Math.round((document.getElementById('damage').value / 150 * timeWorkoutMultiplier[selectWorkouts[1]]) * rankMultiplier[selectedRankMulti]), Math.round(10 * timeWorkoutMultiplier[selectWorkouts[1]]));
+	
+	var bonusChecked = document.querySelector('input[name="place"]:checked').value;
+	if(bonusChecked == "winner"){
+		document.getElementById('tp3').innerHTML = "Winners Bonus: " + bonusWinOptions[getRandomInt(bonusWinOptions.length)];
+	}
+	else if(bonusChecked == "top5"){
+		if(Math.random() > 0.5){
+			document.getElementById('tp3').innerHTML = "Top 5 Bonus: " + "Remove " + Math.round(repsTarget * 0.25) + " " + repWorkouts[selectWorkouts[0]]
+		}
+		else{
+			document.getElementById('tp3').innerHTML = "Top 5 Bonus: " + "Remove " + Math.round(repsTarget * 0.25) + " seconds of " + timeWorkouts[selectWorkouts[1]]
+		}
+	}
+	else if(bonusChecked == "top10"){
+		if(Math.random() > 0.5){
+			document.getElementById('tp3').innerHTML = "Top 10 Bonus: " + "Remove " + Math.round(repsTarget * 0.15) + " " + repWorkouts[selectWorkouts[0]]
+		}
+		else{
+			document.getElementById('tp3').innerHTML = "Top 10 Bonus: " + "Remove " + Math.round(repsTarget * 0.15) + " seconds of " + timeWorkouts[selectWorkouts[1]]
+		}
+	}
+	
 	workout1();
 }
   
@@ -146,29 +169,26 @@ function back(){
 }
 
 function workout1(){
-	target = Math.max(Math.round((document.getElementById('kills').value * 1.25 * repWorkoutMultiplier[selectWorkouts[0]]) * rankMultiplier[selectedRankMulti]), Math.round(5 * repWorkoutMultiplier[selectWorkouts[0]]));
-	console.log(target);
-	for (let i = 0; i <= target; i++) {
+	for (let i = 0; i <= repsTarget; i++) {
 	  setTimeout(function timer() {
 		document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": " + i + " reps";
-		if(i == target){
+		if(i == repsTarget){
 			document.getElementById('tp1').style.animationPlayState  = 'running';
 			workout2();
 			return;
 		}
-		}, Math.max(i * 1000/target, 1));	  
+		}, Math.max(i * 1000/repsTarget, 1));	  
 	}
 }
 
 function workout2(){
-	target = Math.max(Math.round((document.getElementById('damage').value / 150 * repWorkoutMultiplier[selectWorkouts[0]]) * rankMultiplier[selectedRankMulti]), Math.round(10 * repWorkoutMultiplier[selectWorkouts[0]]));
-	for (let i = 0; i <= target; i++) {
+	for (let i = 0; i <= timeTarget; i++) {
 	  setTimeout(function timer() {
 		document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": " + i + " seconds";
-		if(i == target){
+		if(i == timeTarget){
 			document.getElementById('tp2').style.animationPlayState  = 'running';
 		}
-	  }, Math.max(i * 1000/target, 1));	  
+	  }, Math.max(i * 1000/timeTarget, 1));	  
 	}
 }
 
