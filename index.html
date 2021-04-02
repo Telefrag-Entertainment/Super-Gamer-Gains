@@ -108,9 +108,9 @@ var repWorkoutMultiplier = [0.75, 1, 1.5, 0.75, 1.15, 0.8, 0.5];
 var repImgs = ["pushup_tired.gif"];
 var timeWorkouts = ["Planks", "Wall Sit"];
 var timeWorkoutMultiplier = [1.25, 1];
-var timeImgs = ["plank_tired.gif"];
+var timeImgs = ["plank_tired.gif", "wallSit_tired.gif"];
 var selectWorkouts = [];
-var rankMultiplier = [1, 1.25, 1.75, 2.5];
+var rankMultiplier = [1, 1.25, 2, 3];
 var selectedRankMulti = 0;
 var bonusWinOptions = ["CONGRATULATIONS!<br>Cut your reps/time in half, you earned a break!", "GOOD JOB!<br>Feel free to skip this one, you earned a break!", 
 "NICE WIN!<br>Use that adrenilne to knock out your workout!", "YOU WON!<br>Feel free to substitute one of your exercises with an exercise you prefer."];
@@ -127,8 +127,8 @@ function showResults() {
 	document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": 0 reps";
 	document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": 0 seconds";
 
-	document.getElementById('repImg').innerHTML = "<img src='img/" + repImgs[0] + "' style='width:200px;'>";
-	document.getElementById('timeImg').innerHTML = "<img src='img/" + timeImgs[0] + "' style='width:200px;'>";
+	document.getElementById('repImg').innerHTML = "<img src='img/" + repImgs[0] + "' style='width:15vw;'>";
+	document.getElementById('timeImg').innerHTML = "<img src='img/" + timeImgs[selectWorkouts[1]] + "' style='width:15vw;'>";
 	
 	document.getElementById('formPage').style.display = 'none';
 	document.getElementById('resultPage').style.display = 'inline';
