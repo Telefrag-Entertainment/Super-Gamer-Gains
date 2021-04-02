@@ -127,8 +127,8 @@ function showResults() {
 	document.getElementById('tp1').innerHTML = repWorkouts[selectWorkouts[0]] + ": 0 reps";
 	document.getElementById('tp2').innerHTML = timeWorkouts[selectWorkouts[1]] + ": 0 seconds";
 
-	document.getElementById('repImg').innerHTML = "<img src='img/" + repImgs[0] + "' style='width:15vw;'>";
-	document.getElementById('timeImg').innerHTML = "<img src='img/" + timeImgs[selectWorkouts[1]] + "' style='width:15vw;'>";
+	document.getElementById('repImg').innerHTML = "<img src='img/" + repImgs[0] + "' style='width:15vw; min-width:200px;'>";
+	document.getElementById('timeImg').innerHTML = "<img src='img/" + timeImgs[selectWorkouts[1]] + "' style='width:15vw; min-width:200px;'>";
 	
 	document.getElementById('formPage').style.display = 'none';
 	document.getElementById('resultPage').style.display = 'inline';
